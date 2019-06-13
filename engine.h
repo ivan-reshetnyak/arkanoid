@@ -23,12 +23,14 @@ public:
   std::vector<ball_p> & getBalls( void );
   paddle & getPaddle( void );
   engine & operator<<( modifier *NewMod );
+  int getLives( void ) const;
+  void damage( int Dmg );
 
 private:
   static engine *Instance;
   timer Timer;
   paddle Paddle;
-  int WinW, WinH;
+  int WinW, WinH, Lives;
   std::vector<ball_p> Balls;
   std::vector<brick *> Bricks;
   std::vector<modifier *> Mods;

@@ -10,13 +10,11 @@
 namespace ark {
 namespace mods {
 
-death::death( void ) {
-  Lives = LIVES;
-}
-
 void death::update( engine &Engine ) {
-  if (Lives <= 0)
+  if (Engine.getLives() <= 0) {
     Engine.getTimer().pause();
+    return;
+  }
 
   paddle &Paddle = Engine.getPaddle();
 
@@ -39,7 +37,7 @@ void death::update( engine &Engine ) {
       Ball->update(Engine);
 
       if (Engine.getBalls().size() - Out.size() <= 1)
-        Lives--;
+        Engine.damage(1);
       else
         Out.push_back(Ball);
     }

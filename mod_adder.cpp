@@ -10,7 +10,7 @@
 namespace ark {
 namespace mods {
 
-adder::adder( int ToAdd ) : ToAdd(ToAdd), Added(0) {
+adder::adder( void ) : ToAdd(ADDER_TO_ADD), Added(0) {
   Time = 0;
 }
 

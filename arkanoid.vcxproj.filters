@@ -60,9 +60,6 @@
     <ClCompile Include="mod_adder.cpp">
       <Filter>Source Files\Game\Mods</Filter>
     </ClCompile>
-    <ClCompile Include="brick_adder.cpp">
-      <Filter>Source Files\Game\Bricks</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="memhooks.h">
@@ -107,7 +104,7 @@
     <ClInclude Include="mod_adder.h">
       <Filter>Source Files\Game\Mods</Filter>
     </ClInclude>
-    <ClInclude Include="brick_adder.h">
+    <ClInclude Include="brick_modded.h">
       <Filter>Source Files\Game\Bricks</Filter>
     </ClInclude>
   </ItemGroup>

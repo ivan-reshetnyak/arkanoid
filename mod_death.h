@@ -11,12 +11,9 @@ namespace mods {
 
 class death : public modifier {
 public:
-  death( void );
+  death( void ) = default;
   virtual void update( engine &Engine ) override;
   virtual bool isDead( void ) const final;
-
-private:
-  int Lives;
 };
 
 } // End of 'mods' namespace

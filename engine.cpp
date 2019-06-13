@@ -8,7 +8,8 @@
 #include "constants.h"
 #include "brick_flicker.h"
 #include "brick_hard.h"
-#include "brick_adder.h"
+#include "brick_modded.h"
+#include "mod_adder.h"
 #include "mod_death.h"
 #include "mod_bounds.h"
 
@@ -45,6 +46,8 @@ void engine::init( int argc, char *argv[], int W, int H ) {
   //Balls.push_back(ball_p(new ball({BALL_R, BALL_G, BALL_B}, 0., -0.25)));
   Mods.push_back(new mods::death());
   Mods.push_back(new mods::bounds());
+
+  Lives = LIVES;
 
   glutMainLoop();
 }
@@ -149,7 +152,7 @@ brick * engine::createBrick( double X, double Y ) {
   }
   Roll -= BRICK_HARD_WEIGHT;
   if (Roll <= BRICK_ADDER_WEIGHT)
-    return new bricks::adder(X, Y, ADDER_TO_ADD);
+    return new bricks::modded<mods::adder>(X, Y, BRICK_ADDER_COLOR);
   Roll -= BRICK_ADDER_WEIGHT;
 
   return new brick(X, Y);
@@ -197,6 +200,14 @@ paddle & engine::getPaddle( void ) {
 engine & engine::operator<<( modifier *NewMod ) {
   Mods.push_back(NewMod);
   return *this;
+}
+
+int engine::getLives( void ) const {
+  return Lives;
+}
+
+void engine::damage( int Dmg ) {
+  Lives -= Dmg;
 }
 
 } // End of 'ark' namespace

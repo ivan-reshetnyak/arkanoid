@@ -11,7 +11,7 @@ namespace mods {
 
 class adder : public modifier {
 public:
-  adder( int ToAdd );
+  adder( void );
   virtual void update( engine &Engine ) override;
   virtual bool isDead( void ) const final;
 
