@@ -29,6 +29,8 @@ void death::update( engine &Engine ) {
           Ball->getX() - Ball->getW() * 0.5 <= Paddle.getX() + Paddle.getW() * 0.5))) {
       // Ball hit paddle
       Ball->bounceHorizontal();
+      double ExC = (abs(Ball->getX() - Paddle.getX()) / Paddle.getW() * 2) * 0.8;
+      Ball->bounce(ExC, 1.0 - ExC);
       Ball->update(Engine);
     } else if (Ball->getY() + Ball->getH() * 0.5 < -1) {
       // Ball miss paddle

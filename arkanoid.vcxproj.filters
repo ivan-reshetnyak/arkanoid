@@ -57,6 +57,12 @@
     <ClCompile Include="mod_bounds.cpp">
       <Filter>Source Files\Game\Mods</Filter>
     </ClCompile>
+    <ClCompile Include="mod_adder.cpp">
+      <Filter>Source Files\Game\Mods</Filter>
+    </ClCompile>
+    <ClCompile Include="brick_adder.cpp">
+      <Filter>Source Files\Game\Bricks</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="memhooks.h">
@@ -97,6 +103,12 @@
     </ClInclude>
     <ClInclude Include="mod_bounds.h">
       <Filter>Source Files\Game\Mods</Filter>
+    </ClInclude>
+    <ClInclude Include="mod_adder.h">
+      <Filter>Source Files\Game\Mods</Filter>
+    </ClInclude>
+    <ClInclude Include="brick_adder.h">
+      <Filter>Source Files\Game\Bricks</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

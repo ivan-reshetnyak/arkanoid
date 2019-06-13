@@ -10,11 +10,8 @@ namespace ark {
 namespace bricks {
 
 flicker::flicker( double X, double Y, double Period ) : brick(X, Y), Period(Period) {
-  Durability = 1;
   StateTime = 0;
-  Color = {BRICK_FLICKER_R, BRICK_FLICKER_G, BRICK_FLICKER_B};
-  Width = BRICK_WIDTH;
-  Height = BRICK_HEIGHT;
+  Color = BRICK_FLICKER_COLOR;
 }
 
 void flicker::update( engine &Engine ) {

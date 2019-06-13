@@ -11,7 +11,7 @@ namespace bricks {
 
 hard::hard( double X, double Y, int Durab ) : brick(X, Y) {
   MaxDurability = Durability = Durab;
-  Color = {BRICK_HARD_R, BRICK_HARD_G, BRICK_HARD_B};
+  Color = BRICK_HARD_COLOR;
 }
 
 

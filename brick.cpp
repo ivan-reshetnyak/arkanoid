@@ -10,7 +10,7 @@ namespace ark {
 
 brick::brick( double X, double Y ) : X(X), Y(Y) {
   Durability = 1;
-  Color = {BRICK_STANDART_R, BRICK_STANDART_G, BRICK_STANDART_B};
+  Color = BRICK_STANDART_COLOR;
   Width = BRICK_WIDTH;
   Height = BRICK_HEIGHT;
 }

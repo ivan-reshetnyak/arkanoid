@@ -66,6 +66,16 @@ void ball::bounceHorizontal( void ) {
   YSpeed *= -1;
 }
 
+void ball::bounce( double XProp, double YProp ) {
+  double
+    Sq = XSpeed * XSpeed + YSpeed * YSpeed,
+    XS = sqrt(Sq / (1 + (YProp * YProp / XProp / XProp))),
+    YS = XS * YProp / XProp;
+
+  XSpeed = XSpeed / abs(XSpeed) * XS;
+  YSpeed = YSpeed / abs(YSpeed) * YS;
+}
+
 void ball::setX( double NewX ) {
   X = NewX;
 }

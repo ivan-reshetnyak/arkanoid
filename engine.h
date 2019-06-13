@@ -22,6 +22,7 @@ public:
   timer & getTimer( void );
   std::vector<ball_p> & getBalls( void );
   paddle & getPaddle( void );
+  engine & operator<<( modifier *NewMod );
 
 private:
   static engine *Instance;
@@ -39,6 +40,7 @@ private:
   static void reshapeFunc( int NewW, int NewH );
   static void mouseFunc( int Button, int State, int X, int Y );
   static void update( void );
+  static brick * createBrick( double X, double Y );
   ~engine( void );
 };
 

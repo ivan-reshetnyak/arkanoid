@@ -22,6 +22,7 @@ public:
   double getH( void ) const;
   void bounceVertical( void );
   void bounceHorizontal( void );
+  void bounce( double XProp, double YProp );
 
 private:
   color Color;

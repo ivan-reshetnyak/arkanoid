@@ -8,6 +8,7 @@
 #include "constants.h"
 #include "brick_flicker.h"
 #include "brick_hard.h"
+#include "brick_adder.h"
 #include "mod_death.h"
 #include "mod_bounds.h"
 
@@ -40,7 +41,8 @@ void engine::init( int argc, char *argv[], int W, int H ) {
   //glutMotionFunc(MouseMotion);
   //glutMouseWheelFunc(MouseWheel);
 
-  Balls.push_back(ball_p(new ball({BALL_R, BALL_G, BALL_B}, 0., -0.5)));
+  Balls.push_back(ball_p(new ball(BALL_COLOR, 0., -0.5)));
+  //Balls.push_back(ball_p(new ball({BALL_R, BALL_G, BALL_B}, 0., -0.25)));
   Mods.push_back(new mods::death());
   Mods.push_back(new mods::bounds());
 
@@ -129,8 +131,8 @@ void engine::reshapeFunc( int NewW, int NewH ) {
 void engine::mouseFunc( int Button, int State, int X, int Y ) {
 }
 
-static brick * createBrick( double X, double Y ) {
-  static const int TotalWeight = BRICK_STANDART_WEIGHT + BRICK_FLICKER_WEIGHT + BRICK_HARD_WEIGHT;
+brick * engine::createBrick( double X, double Y ) {
+  static const int TotalWeight = BRICK_STANDART_WEIGHT + BRICK_FLICKER_WEIGHT + BRICK_HARD_WEIGHT + BRICK_ADDER_WEIGHT;
   int Roll = (rand() % TotalWeight) + 1;
 
   if (Roll <= BRICK_STANDART_WEIGHT)
@@ -145,12 +147,15 @@ static brick * createBrick( double X, double Y ) {
     int Durab = BRICK_HARD_HP_MIN + rand() % (BRICK_HARD_HP_MAX - BRICK_HARD_HP_MIN);
     return new bricks::hard(X, Y, Durab);
   }
-  Roll -= BRICK_FLICKER_WEIGHT;
+  Roll -= BRICK_HARD_WEIGHT;
+  if (Roll <= BRICK_ADDER_WEIGHT)
+    return new bricks::adder(X, Y, ADDER_TO_ADD);
+  Roll -= BRICK_ADDER_WEIGHT;
 
   return new brick(X, Y);
 }
 
-engine::engine( void ) : Paddle({PADDLE_R, PADDLE_G, PADDLE_B}) {
+engine::engine( void ) : Paddle(PADDLE_COLOR) {
   double SX = 2. / BRICK_COLUMNS;
   for (int Row = 0; Row < BRICK_ROWS; Row++)
     for (int Col = 0; Col < BRICK_COLUMNS; Col++)
@@ -187,6 +192,11 @@ std::vector<engine::ball_p> & engine::getBalls( void ) {
 
 paddle & engine::getPaddle( void ) {
   return Paddle;
+}
+
+engine & engine::operator<<( modifier *NewMod ) {
+  Mods.push_back(NewMod);
+  return *this;
 }
 
 } // End of 'ark' namespace
