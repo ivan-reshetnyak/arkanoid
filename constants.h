@@ -12,7 +12,7 @@
 #define PADDLE_B 1
 
 // Ball
-#define BALL_SPEED 0.3
+#define BALL_SPEED 1.3
 #define BALL_XSIZE 0.03
 #define BALL_DETAIL 20
 #define BALL_R 1
@@ -30,6 +30,13 @@
 #define BRICK_STANDART_R 0.3
 #define BRICK_STANDART_G 0.3
 #define BRICK_STANDART_B 0.3
+// Hard
+#define BRICK_HARD_WEIGHT 30
+#define BRICK_HARD_R 1.0
+#define BRICK_HARD_G 1.0
+#define BRICK_HARD_B 1.0
+#define BRICK_HARD_HP_MIN 2
+#define BRICK_HARD_HP_MAX 5
 // Flicker
 #define BRICK_FLICKER_WEIGHT 20
 #define BRICK_FLICKER_PERIOD_MIN 1

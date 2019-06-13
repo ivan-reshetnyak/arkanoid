@@ -18,8 +18,6 @@ public:
 private:
   bool IsActive;
   double Period, StateTime;
-
-  virtual void onHit( engine &Engine );
 };
 
 } // End of 'bricks' namespace

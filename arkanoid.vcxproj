@@ -20,7 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ball.cpp" />
-    <ClCompile Include="brick_hard.hcpp" />
+    <ClCompile Include="brick_hard.cpp" />
     <ClCompile Include="brick.cpp" />
     <ClCompile Include="brick_flicker.cpp" />
     <ClCompile Include="engine.cpp" />

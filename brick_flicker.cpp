@@ -61,9 +61,5 @@ void flicker::render( void ) const {
   glRectd(X - HW, Y - HH, X + HW, Y + HH);
 }
 
-void flicker::onHit( engine &Engine ) {
-  Durability--;
-}
-
 } // End of 'bricks' namespace
 } // End of 'ark' namespace

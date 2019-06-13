@@ -6,6 +6,8 @@
 #include "GL/freeglut.h"
 #include "engine.h"
 #include "constants.h"
+#include "brick_flicker.h"
+#include "brick_hard.h"
 
 namespace ark {
 
@@ -113,7 +115,7 @@ void engine::mouseFunc( int Button, int State, int X, int Y ) {
 }
 
 static brick * createBrick( double X, double Y ) {
-  static const int TotalWeight = BRICK_STANDART_WEIGHT + BRICK_FLICKER_WEIGHT;
+  static const int TotalWeight = BRICK_STANDART_WEIGHT + BRICK_FLICKER_WEIGHT + BRICK_HARD_WEIGHT;
   int Roll = (rand() % TotalWeight) + 1;
 
   if (Roll <= BRICK_STANDART_WEIGHT)
@@ -122,6 +124,11 @@ static brick * createBrick( double X, double Y ) {
   if (Roll <= BRICK_FLICKER_WEIGHT) {
     double Period = BRICK_FLICKER_PERIOD_MIN + (double)rand() / RAND_MAX * (BRICK_FLICKER_PERIOD_MAX - BRICK_FLICKER_PERIOD_MIN);
     return new bricks::flicker(X, Y, Period);
+  }
+  Roll -= BRICK_FLICKER_WEIGHT;
+  if (Roll <= BRICK_HARD_WEIGHT) {
+    int Durab = BRICK_HARD_HP_MIN + rand() % (BRICK_HARD_HP_MAX - BRICK_HARD_HP_MIN);
+    return new bricks::hard(X, Y, Durab);
   }
   Roll -= BRICK_FLICKER_WEIGHT;
 
