@@ -8,6 +8,8 @@
 #include "constants.h"
 #include "brick_flicker.h"
 #include "brick_hard.h"
+#include "mod_death.h"
+#include "mod_bounds.h"
 
 namespace ark {
 
@@ -38,7 +40,9 @@ void engine::init( int argc, char *argv[], int W, int H ) {
   //glutMotionFunc(MouseMotion);
   //glutMouseWheelFunc(MouseWheel);
 
-  Balls.push_back(new ball({BALL_R, BALL_G, BALL_B}, 0., -0.5));
+  Balls.push_back(ball_p(new ball({BALL_R, BALL_G, BALL_B}, 0., -0.5)));
+  Mods.push_back(new mods::death());
+  Mods.push_back(new mods::bounds());
 
   glutMainLoop();
 }
@@ -59,6 +63,17 @@ void engine::update( void ) {
   for (auto &Brick : Dead) {
     Instance->Bricks.erase(std::remove(Instance->Bricks.begin(), Instance->Bricks.end(), Brick), Instance->Bricks.end());
     delete Brick;
+  }
+
+  std::vector<modifier *> DeadMods;
+  for (auto &Mod : Instance->Mods) {
+    Mod->update(*Instance);
+    if (Mod->isDead())
+      DeadMods.push_back(Mod);
+  }
+  for (auto &Mod : DeadMods) {
+    Instance->Mods.erase(std::remove(Instance->Mods.begin(), Instance->Mods.end(), Mod), Instance->Mods.end());
+    delete Mod;
   }
 }
 
@@ -143,13 +158,15 @@ engine::engine( void ) : Paddle({PADDLE_R, PADDLE_G, PADDLE_B}) {
 }
 
 engine::~engine( void ) {
-  for (auto &Ball : Balls)
-    delete Ball;
   Balls.clear();
 
   for (auto &Brick : Bricks)
     delete Brick;
   Bricks.clear();
+
+  for (auto &Mod : Mods)
+    delete Mod;
+  Mods.clear();
 }
 
 int engine::getW( void ) const {
@@ -160,12 +177,16 @@ int engine::getH( void ) const {
   return WinH;
 }
 
-const timer & engine::getTimer( void ) const {
+timer & engine::getTimer( void ) {
   return Timer;
 }
 
-std::vector<ball *> & engine::getBalls( void ) {
+std::vector<engine::ball_p> & engine::getBalls( void ) {
   return Balls;
+}
+
+paddle & engine::getPaddle( void ) {
+  return Paddle;
 }
 
 } // End of 'ark' namespace

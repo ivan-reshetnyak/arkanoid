@@ -2,6 +2,8 @@
 
 #define PI 3.1415926
 
+#define LIVES 3
+
 // Paddle
 #define PADDLE_SPEED 5.0
 #define PADDLE_HEIGHT 0.03
@@ -12,7 +14,7 @@
 #define PADDLE_B 1
 
 // Ball
-#define BALL_SPEED 1.3
+#define BALL_SPEED 0.5
 #define BALL_XSIZE 0.03
 #define BALL_DETAIL 20
 #define BALL_R 1

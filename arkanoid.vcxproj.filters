@@ -22,6 +22,9 @@
     <Filter Include="Source Files\Game\Bricks">
       <UniqueIdentifier>{f84f974a-4ba5-4e8c-a4bc-26cf934a383b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Game\Mods">
+      <UniqueIdentifier>{a7ddac97-31c3-4964-b5bd-ea7bf9f967c7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -47,6 +50,12 @@
     </ClCompile>
     <ClCompile Include="brick_hard.cpp">
       <Filter>Source Files\Game\Bricks</Filter>
+    </ClCompile>
+    <ClCompile Include="mod_death.cpp">
+      <Filter>Source Files\Game\Mods</Filter>
+    </ClCompile>
+    <ClCompile Include="mod_bounds.cpp">
+      <Filter>Source Files\Game\Mods</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -79,6 +88,15 @@
     </ClInclude>
     <ClInclude Include="timer.h">
       <Filter>Source Files\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="modifier.h">
+      <Filter>Source Files\Game\Mods</Filter>
+    </ClInclude>
+    <ClInclude Include="mod_death.h">
+      <Filter>Source Files\Game\Mods</Filter>
+    </ClInclude>
+    <ClInclude Include="mod_bounds.h">
+      <Filter>Source Files\Game\Mods</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

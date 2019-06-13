@@ -58,4 +58,16 @@ void paddle::render( void ) const {
   glRectd(X - HW, Y - HH, X + HW, Y + HH);
 }
 
+double paddle::getX( void ) const {
+  return X;
+}
+
+double paddle::getW( void ) const {
+  return Width;
+}
+
+double paddle::getH( void ) const {
+  return Height;
+}
+
 } // End of 'ark' namespace

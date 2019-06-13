@@ -20,29 +20,6 @@ void ball::update( engine &Engine ) {
   X += XSpeed * Engine.getTimer().getDeltaTime();
   Y += YSpeed * Engine.getTimer().getDeltaTime() / Ratio;
   Height = Width / Ratio;
-  fit();
-}
-
-void ball::fit( void ) {
-  if (X - 0.5 * Width < -1) {
-    X = -1 + 0.5 * Width;
-    bounceVertical();
-  }
-
-  if (X + 0.5 * Width > 1) {
-    X = 1 - 0.5 * Width;
-    bounceVertical();
-  }
-
-  if (Y - 0.5 * Height < -1) {
-    Y = -1 + 0.5 * Height;
-    bounceHorizontal();
-  }
-
-  if (Y + 0.5 * Height > 1) {
-    Y = 1 - 0.5 * Height;
-    bounceHorizontal();
-  }
 }
 
 ball::ball( const color &Col, double X, double Y ) : Color(Col), X(X), Y(Y) {
@@ -87,6 +64,14 @@ void ball::bounceVertical( void ) {
 
 void ball::bounceHorizontal( void ) {
   YSpeed *= -1;
+}
+
+void ball::setX( double NewX ) {
+  X = NewX;
+}
+
+void ball::setY( double NewY ) {
+  Y = NewY;
 }
 
 } // End of 'ark' namespace

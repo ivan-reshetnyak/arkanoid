@@ -17,6 +17,9 @@ public:
   void modSpeed( double Mul );
   void update( const timer &Timer );
   void render( void ) const;
+  double getX( void ) const;
+  double getW( void ) const;
+  double getH( void ) const;
 
 private:
   color Color;

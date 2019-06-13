@@ -16,6 +16,8 @@ public:
   void render( void ) const;
   double getX( void ) const;
   double getY( void ) const;
+  void setX( double X );
+  void setY( double Y );
   double getW( void ) const;
   double getH( void ) const;
   void bounceVertical( void );
@@ -27,8 +29,6 @@ private:
     X, Y,           // Center coords
     Width, Height,
     XSpeed, YSpeed;
-
-  void fit( void );
 };
 
 } // End of 'ark' namespace

@@ -25,6 +25,8 @@
     <ClCompile Include="brick_flicker.cpp" />
     <ClCompile Include="engine.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="mod_bounds.cpp" />
+    <ClCompile Include="mod_death.cpp" />
     <ClCompile Include="paddle.cpp" />
     <ClCompile Include="timer.cpp" />
   </ItemGroup>
@@ -37,6 +39,9 @@
     <ClInclude Include="constants.h" />
     <ClInclude Include="engine.h" />
     <ClInclude Include="memhooks.h" />
+    <ClInclude Include="modifier.h" />
+    <ClInclude Include="mod_bounds.h" />
+    <ClInclude Include="mod_death.h" />
     <ClInclude Include="timer.h" />
     <ClInclude Include="paddle.h" />
   </ItemGroup>
