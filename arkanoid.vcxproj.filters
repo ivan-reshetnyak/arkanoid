@@ -13,51 +13,72 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\Utils">
+      <UniqueIdentifier>{bb6d137e-6287-4c25-a91a-b9a65a83ea64}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game">
+      <UniqueIdentifier>{f33b5bbc-495f-4589-a3d7-a62d4d67550d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\Bricks">
+      <UniqueIdentifier>{f84f974a-4ba5-4e8c-a4bc-26cf934a383b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="engine.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="timer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="paddle.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ball.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="brick_hard.hcpp">
+      <Filter>Source Files\Game\Bricks</Filter>
     </ClCompile>
     <ClCompile Include="brick.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Game\Bricks</Filter>
+    </ClCompile>
+    <ClCompile Include="brick_flicker.cpp">
+      <Filter>Source Files\Game\Bricks</Filter>
+    </ClCompile>
+    <ClCompile Include="ball.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="engine.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="paddle.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="timer.cpp">
+      <Filter>Source Files\Utils</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="engine.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="memhooks.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="paddle.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="timer.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="color.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ball.h">
-      <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="constants.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="brick_hard.h">
+      <Filter>Source Files\Game\Bricks</Filter>
+    </ClInclude>
     <ClInclude Include="brick.h">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Game\Bricks</Filter>
+    </ClInclude>
+    <ClInclude Include="brick_flicker.h">
+      <Filter>Source Files\Game\Bricks</Filter>
+    </ClInclude>
+    <ClInclude Include="color.h">
+      <Filter>Source Files\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="ball.h">
+      <Filter>Source Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="engine.h">
+      <Filter>Source Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="paddle.h">
+      <Filter>Source Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="timer.h">
+      <Filter>Source Files\Utils</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -6,6 +6,7 @@
 #include "paddle.h"
 #include "ball.h"
 #include "brick.h"
+#include "brick_flicker.h"
 
 namespace ark {
 

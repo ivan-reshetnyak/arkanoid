@@ -9,20 +9,18 @@ class engine;
 class brick {
 public:
   brick( double X, double Y );
-  void update( engine &Engine );
-  virtual bool isDead( void );
+  virtual void update( engine &Engine );
+  virtual bool isDead( void ) const;
   virtual void render( void ) const;
 
 protected:
   color Color;
-
-  virtual void onHit( engine &Engine );
-
-private:
   int Durability;
   double
     X, Y,           // Center coords
     Width, Height;
+
+  virtual void onHit( engine &Engine );
 };
 
 } // End of 'ark' namespace

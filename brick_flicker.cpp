@@ -3,19 +3,29 @@
 #include "GL/freeglut.h"
 #include "ball.h"
 #include "engine.h"
-#include "brick.h"
+#include "brick_flicker.h"
 #include "constants.h"
 
 namespace ark {
+namespace bricks {
 
-brick::brick( double X, double Y ) : X(X), Y(Y) {
+flicker::flicker( double X, double Y, double Period ) : brick(X, Y), Period(Period) {
   Durability = 1;
-  Color = {BRICK_STANDART_R, BRICK_STANDART_G, BRICK_STANDART_B};
+  StateTime = 0;
+  Color = {BRICK_FLICKER_R, BRICK_FLICKER_G, BRICK_FLICKER_B};
   Width = BRICK_WIDTH;
   Height = BRICK_HEIGHT;
 }
 
-void brick::update( engine &Engine ) {
+void flicker::update( engine &Engine ) {
+  StateTime += Engine.getTimer().getDeltaTime();
+  while (StateTime >= Period) {
+    StateTime -= Period;
+    IsActive = !IsActive;
+  }
+  if (!IsActive)
+    return;
+
   auto Balls = Engine.getBalls();
   for (const auto &Ball : Balls) {
     double
@@ -40,20 +50,20 @@ void brick::update( engine &Engine ) {
   }
 }
 
-bool brick::isDead( void ) const {
-  return Durability <= 0;
-}
+void flicker::render( void ) const {
+  //if (!IsActive)
+  //  return;
 
-void brick::render( void ) const {
   double
     HW = 0.5 * Width,
     HH = 0.5 * Height;
-  glColor3d(Color.R, Color.G, Color.B);
+  glColor4d(Color.R, Color.G, Color.B, IsActive ? 1 : BRICK_FLICKER_A);
   glRectd(X - HW, Y - HH, X + HW, Y + HH);
 }
 
-void brick::onHit( engine &Engine ) {
+void flicker::onHit( engine &Engine ) {
   Durability--;
 }
 
+} // End of 'bricks' namespace
 } // End of 'ark' namespace

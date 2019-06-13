@@ -20,7 +20,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ball.cpp" />
+    <ClCompile Include="brick_hard.hcpp" />
     <ClCompile Include="brick.cpp" />
+    <ClCompile Include="brick_flicker.cpp" />
     <ClCompile Include="engine.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="paddle.cpp" />
@@ -28,7 +30,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ball.h" />
+    <ClInclude Include="brick_hard.h" />
     <ClInclude Include="brick.h" />
+    <ClInclude Include="brick_flicker.h" />
     <ClInclude Include="color.h" />
     <ClInclude Include="constants.h" />
     <ClInclude Include="engine.h" />
