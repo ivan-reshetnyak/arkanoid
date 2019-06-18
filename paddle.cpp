@@ -1,6 +1,7 @@
+#include <fstream>
+
 #include "GL/freeglut.h"
 #include "paddle.h"
-#include "constants.h"
 
 namespace ark {
 
@@ -40,14 +41,16 @@ void paddle::fit( void ) {
     X = 1 - 0.5 * Width;
 }
 
-paddle::paddle( const color &Col ) : Color(Col) {
+paddle::paddle( void ) {
   X = 0;
   Y = -1;
-  Speed = PADDLE_SPEED;
-  Width = TargetWidth = PADDLE_WIDTH;
-  Height = PADDLE_HEIGHT;
-  ResizeTime = PADDLE_RESIZE_TIME;
+
+  std::ifstream File("settings/paddle");
+  File >> Speed >> Width >> Height
+       >> ResizeTime
+       >> Color.R >> Color.G >> Color.B;
   ResizeSpeed = 0;
+  TargetWidth = Width;
 }
 
 void paddle::render( engine &Engine ) const {

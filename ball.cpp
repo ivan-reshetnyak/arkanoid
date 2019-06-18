@@ -1,3 +1,5 @@
+#include <fstream>
+
 #include "GL/freeglut.h"
 #include "engine.h"
 #include "ball.h"
@@ -22,10 +24,14 @@ void ball::update( engine &Engine ) {
   Height = Width / Ratio;
 }
 
-ball::ball( const color &Col, double X, double Y ) : Color(Col), X(X), Y(Y) {
-  XSpeed = YSpeed = BALL_SPEED;
-  Width = BALL_XSIZE;
+ball::ball( double X, double Y ) : X(X), Y(Y) {
+  std::ifstream File("settings/ball");
+  File >> XSpeed;
+  YSpeed = XSpeed;
+  File >> Width;
   Height = Width;
+  File >> Detail
+       >> Color.R >> Color.G >> Color.B;
 }
 
 void ball::render( engine &Engine ) const {
@@ -35,8 +41,8 @@ void ball::render( engine &Engine ) const {
 
   glColor3d(Color.R, Color.G, Color.B);
   glBegin(GL_POLYGON);
-  for (int i = 0; i < BALL_DETAIL; i++) {
-    double Phi = -(2 * 3.1415 / BALL_DETAIL) * i;
+  for (int i = 0; i < Detail; i++) {
+    double Phi = -(2 * PI / Detail) * i;
     glVertex2d(X + HW * cos(Phi), Y + HH * sin(Phi));
   }
   glEnd();

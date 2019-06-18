@@ -1,6 +1,6 @@
 #pragma once
 
-#include "constants.h"
+#include "color.h"
 #include "modifier.h"
 
 namespace ark {
@@ -16,8 +16,10 @@ public:
   virtual bool isDead( void ) const override;
   virtual void render( engine &Engine ) const override;
   virtual const char * settingsFileName( void ) const final;
+
 private:
   bool IsSpent;
+  color Color;
 };
 
 } // End of 'mods' namespace

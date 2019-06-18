@@ -1,6 +1,5 @@
 #pragma once
 
-#include "constants.h"
 #include "modifier.h"
 
 namespace ark {
@@ -17,7 +16,7 @@ public:
   virtual const char * settingsFileName( void ) const final;
 
 private:
-  double Time;
+  double Time, Period;
   int ToAdd, Added;
 };
 

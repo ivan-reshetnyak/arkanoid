@@ -13,7 +13,7 @@ public:
     LEFT, RIGHT
   };
 
-  paddle( const color &Col );
+  paddle( void );
   void move( direction Dir, const timer &Timer );
   void resize( double Mul );
   void modSpeed( double Mul );

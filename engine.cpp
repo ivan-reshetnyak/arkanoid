@@ -5,7 +5,6 @@
 
 #include "GL/freeglut.h"
 #include "engine.h"
-#include "constants.h"
 #include "mod_adder.h"
 #include "mod_death.h"
 #include "mod_bounds.h"
@@ -41,16 +40,22 @@ void engine::init( int argc, char *argv[], int W, int H ) {
 
   *Instance << new brick;
 
-  double SX = 2. / BRICK_COLUMNS;
-  for (int Row = 0; Row < BRICK_ROWS; Row++)
-    for (int Col = 0; Col < BRICK_COLUMNS; Col++)
-      Bricks.push_back((brick_p)createBrick(-1. + SX * (0.5 + Col), 1. - BRICK_YSPACING * (0.5 + Row)));
+  int Cols, Rows;
+  double YSpace, Td;
+  std::ifstream File("settings/brick");
+  File >> Rows >> Cols >> Td >> Td >> YSpace;
 
-  Balls.push_back(ball_p(new ball(BALL_COLOR, 0., -0.5)));
+  double SX = 2. / Cols;
+  for (int Row = 0; Row < Rows; Row++)
+    for (int Col = 0; Col < Cols; Col++)
+      Bricks.push_back((brick_p)createBrick(-1. + SX * (0.5 + Col), 1. - YSpace * (0.5 + Row)));
+
+  Balls.push_back(ball_p(new ball(0., -0.5)));
   Mods.push_back(mod_p(new mods::death()));
   Mods.push_back(mod_p(new mods::bounds()));
 
-  Lives = LIVES;
+  std::ifstream GameSet("settings/game");
+  GameSet >> Lives;
 
   glutMainLoop();
 }
@@ -87,6 +92,8 @@ void engine::displayFunc( void ) {
   glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);;
   glClear(GL_COLOR_BUFFER_BIT);
 
+  for (auto &Mod : Instance->Mods)
+    Mod->render(*Instance);
   Instance->Paddle.render(*Instance);
   for (auto &Brick : Instance->Bricks)
     Brick->render(*Instance);
@@ -168,7 +175,7 @@ brick * engine::createBrick( double X, double Y ) {
   return nullptr;
 }
 
-engine::engine( void ) : Paddle(PADDLE_COLOR) {
+engine::engine( void ) {
 }
 
 engine::~engine( void ) {

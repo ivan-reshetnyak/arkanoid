@@ -2,7 +2,6 @@
 
 #include <algorithm>
 
-#include "constants.h"
 #include "mod_death.h"
 #include "engine.h"
 #include "paddle.h"

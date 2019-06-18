@@ -3,7 +3,6 @@
 #include <algorithm>
 
 #include "GL/freeglut.h"
-#include "constants.h"
 #include "mod_bounce.h"
 #include "engine.h"
 #include "paddle.h"
@@ -13,6 +12,9 @@ namespace mods {
 
 bounce::bounce( void ) {
   IsSpent = false;
+  int W;
+  std::ifstream File(settingsFileName());
+  File >> W >> Color.R >> Color.G >> Color.B;
 }
 
 void bounce::update( engine &Engine ) {
@@ -45,6 +47,7 @@ void bounce::render( engine &Engine ) const {
     return;
 
   paddle &Paddle = Engine.getPaddle();
+  glColor3d(Color.R, Color.G, Color.B);
   glRectd(-1, -1 + Paddle.getH() * 0.45, 1, -1 + Paddle.getH() * 0.5);
 }
 

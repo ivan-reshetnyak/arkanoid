@@ -9,7 +9,7 @@ class engine;
 
 class ball {
 public:
-  ball( const color &Col, double X = 0, double Y = 0 );
+  ball( double X = 0, double Y = 0 );
   void resize( double Mul );
   void modSpeed( double Mul );
   void update( engine &Engine );
@@ -25,6 +25,7 @@ public:
   void bounce( double XProp, double YProp );
 
 private:
+  int Detail;
   color Color;
   double
     X, Y,           // Center coords
