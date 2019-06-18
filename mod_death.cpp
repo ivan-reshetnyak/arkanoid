@@ -50,5 +50,9 @@ bool death::isDead( void ) const {
   return false;
 }
 
+const char * death::settingsFileName( void ) const {
+  return "settings/game";
+}
+
 } // End of 'mods' namespace
 } // End of 'ark' namespace

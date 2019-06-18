@@ -6,9 +6,6 @@
 #include "GL/freeglut.h"
 #include "engine.h"
 #include "constants.h"
-#include "brick_flicker.h"
-#include "brick_hard.h"
-#include "brick_modded.h"
 #include "mod_adder.h"
 #include "mod_death.h"
 #include "mod_bounds.h"
@@ -42,10 +39,16 @@ void engine::init( int argc, char *argv[], int W, int H ) {
   //glutMotionFunc(MouseMotion);
   //glutMouseWheelFunc(MouseWheel);
 
+  *Instance << new brick;
+
+  double SX = 2. / BRICK_COLUMNS;
+  for (int Row = 0; Row < BRICK_ROWS; Row++)
+    for (int Col = 0; Col < BRICK_COLUMNS; Col++)
+      Bricks.push_back((brick_p)createBrick(-1. + SX * (0.5 + Col), 1. - BRICK_YSPACING * (0.5 + Row)));
+
   Balls.push_back(ball_p(new ball(BALL_COLOR, 0., -0.5)));
-  //Balls.push_back(ball_p(new ball({BALL_R, BALL_G, BALL_B}, 0., -0.25)));
-  Mods.push_back(new mods::death());
-  Mods.push_back(new mods::bounds());
+  Mods.push_back(mod_p(new mods::death()));
+  Mods.push_back(mod_p(new mods::bounds()));
 
   Lives = LIVES;
 
@@ -59,27 +62,23 @@ void engine::update( void ) {
   for (auto &Ball : Instance->Balls)
     Ball->update(*Instance);
 
-  std::vector<brick *> Dead;
+  std::vector<brick_p> Dead;
   for (auto &Brick : Instance->Bricks) {
     Brick->update(*Instance);
     if (Brick->isDead())
       Dead.push_back(Brick);
   }
-  for (auto &Brick : Dead) {
+  for (auto &Brick : Dead)
     Instance->Bricks.erase(std::remove(Instance->Bricks.begin(), Instance->Bricks.end(), Brick), Instance->Bricks.end());
-    delete Brick;
-  }
 
-  std::vector<modifier *> DeadMods;
+  std::vector<mod_p> DeadMods;
   for (auto &Mod : Instance->Mods) {
     Mod->update(*Instance);
     if (Mod->isDead())
       DeadMods.push_back(Mod);
   }
-  for (auto &Mod : DeadMods) {
+  for (auto &Mod : DeadMods)
     Instance->Mods.erase(std::remove(Instance->Mods.begin(), Instance->Mods.end(), Mod), Instance->Mods.end());
-    delete Mod;
-  }
 }
 
 void engine::displayFunc( void ) {
@@ -135,9 +134,19 @@ void engine::mouseFunc( int Button, int State, int X, int Y ) {
 }
 
 brick * engine::createBrick( double X, double Y ) {
-  static const int TotalWeight = BRICK_STANDART_WEIGHT + BRICK_FLICKER_WEIGHT + BRICK_HARD_WEIGHT + BRICK_ADDER_WEIGHT;
+  int TotalWeight = 0;
+  for (const auto &BrickRef : Instance->BrickPool)
+    TotalWeight += BrickRef->getWeight();
+
   int Roll = (rand() % TotalWeight) + 1;
 
+  for (const auto &BrickRef : Instance->BrickPool) {
+    if (Roll <= BrickRef->getWeight())
+      return BrickRef->create(X, Y);
+    Roll -= BrickRef->getWeight();
+  }
+
+  /*
   if (Roll <= BRICK_STANDART_WEIGHT)
     return new brick(X, Y);
   Roll -= BRICK_STANDART_WEIGHT;
@@ -154,27 +163,19 @@ brick * engine::createBrick( double X, double Y ) {
   if (Roll <= BRICK_ADDER_WEIGHT)
     return new bricks::modded<mods::adder>(X, Y, BRICK_ADDER_COLOR);
   Roll -= BRICK_ADDER_WEIGHT;
+  */
 
-  return new brick(X, Y);
+  return nullptr;
 }
 
 engine::engine( void ) : Paddle(PADDLE_COLOR) {
-  double SX = 2. / BRICK_COLUMNS;
-  for (int Row = 0; Row < BRICK_ROWS; Row++)
-    for (int Col = 0; Col < BRICK_COLUMNS; Col++)
-      Bricks.push_back(createBrick(-1. + SX * (0.5 + Col), 1. - BRICK_YSPACING * (0.5 + Row)));
 }
 
 engine::~engine( void ) {
   Balls.clear();
-
-  for (auto &Brick : Bricks)
-    delete Brick;
-  Bricks.clear();
-
-  for (auto &Mod : Mods)
-    delete Mod;
   Mods.clear();
+  BrickPool.clear();
+  Bricks.clear();
 }
 
 int engine::getW( void ) const {
@@ -197,8 +198,13 @@ paddle & engine::getPaddle( void ) {
   return Paddle;
 }
 
-engine & engine::operator<<( modifier *NewMod ) {
+engine & engine::operator<<( mod_p NewMod ) {
   Mods.push_back(NewMod);
+  return *this;
+}
+
+engine & engine::operator<<( brick *BrickRef ) {
+  BrickPool.push_back((brick_p)BrickRef);
   return *this;
 }
 

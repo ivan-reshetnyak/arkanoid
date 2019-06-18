@@ -27,5 +27,9 @@ bool adder::isDead( void ) const {
   return Added >= ToAdd;
 }
 
+const char * adder::settingsFileName( void ) const {
+  return "settings/brick_adder";
+}
+
 } // End of 'mods' namespace
 } // End of 'ark' namespace

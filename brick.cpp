@@ -1,18 +1,31 @@
 #pragma once
 
+#include <fstream>
+
 #include "GL/freeglut.h"
 #include "ball.h"
 #include "engine.h"
 #include "brick.h"
-#include "constants.h"
 
 namespace ark {
 
+int brick::Weight = 0;
+double brick::Width, brick::Height;
+
+brick::brick( void ) : X(X), Y(Y) {
+  std::ifstream File("settings/brick_standart");
+  File >> Weight >> Color.R >> Color.G >> Color.B;
+
+  int R, C;
+  std::ifstream General("settings/brick");
+  General >> R >> C >> Width >> Height;
+}
+
 brick::brick( double X, double Y ) : X(X), Y(Y) {
+  std::ifstream File("settings/brick_standart");
+  File >> Weight >> Color.R >> Color.G >> Color.B;
+
   Durability = 1;
-  Color = BRICK_STANDART_COLOR;
-  Width = BRICK_WIDTH;
-  Height = BRICK_HEIGHT;
 }
 
 void brick::update( engine &Engine ) {
@@ -54,6 +67,14 @@ void brick::render( engine &Engine ) const {
 
 void brick::onHit( engine &Engine ) {
   Durability--;
+}
+
+int brick::getWeight( void ) const {
+  return Weight;
+}
+
+brick * brick::create( double X, double Y ) const {
+  return new brick(X, Y);
 }
 
 } // End of 'ark' namespace

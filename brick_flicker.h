@@ -1,7 +1,6 @@
 #pragma once
 
 #include "brick.h"
-#include "constants.h"
 
 namespace ark {
 
@@ -11,11 +10,16 @@ namespace bricks {
 
 class flicker : public brick {
 public:
-  flicker( double X, double Y, double Period = BRICK_FLICKER_PERIOD_MIN );
+  flicker( void );
   virtual void update( engine &Engine );
   virtual void render( engine &Engine ) const override;
+  virtual int getWeight( void ) const final;
+  virtual brick * create( double X, double Y ) const final;
 
 private:
+  flicker( double X, double Y, double Period );
+  static int Weight;
+  static double PerMin, PerMax, Alpha;
   bool IsActive;
   double Period, StateTime;
 };

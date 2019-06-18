@@ -14,6 +14,7 @@ public:
   adder( void );
   virtual void update( engine &Engine ) override;
   virtual bool isDead( void ) const final;
+  virtual const char * settingsFileName( void ) const final;
 
 private:
   double Time;

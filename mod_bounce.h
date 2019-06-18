@@ -15,6 +15,7 @@ public:
   virtual void update( engine &Engine ) override;
   virtual bool isDead( void ) const override;
   virtual void render( engine &Engine ) const override;
+  virtual const char * settingsFileName( void ) const final;
 private:
   bool IsSpent;
 };

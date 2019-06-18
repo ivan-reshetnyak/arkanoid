@@ -13,6 +13,8 @@ namespace ark {
 
 class engine {
   using ball_p = std::shared_ptr<ball>;
+  using brick_p = std::shared_ptr<brick>;
+  using mod_p = std::shared_ptr<modifier>;
 
 public:
   static engine & getInstance( void );
@@ -22,9 +24,10 @@ public:
   timer & getTimer( void );
   std::vector<ball_p> & getBalls( void );
   paddle & getPaddle( void );
-  engine & operator<<( modifier *NewMod );
   int getLives( void ) const;
   void damage( int Dmg );
+  engine & operator<<( mod_p NewMod );
+  engine & operator<<( brick *BrickRef );
 
 private:
   static engine *Instance;
@@ -32,8 +35,8 @@ private:
   paddle Paddle;
   int WinW, WinH, Lives;
   std::vector<ball_p> Balls;
-  std::vector<brick *> Bricks;
-  std::vector<modifier *> Mods;
+  std::vector<brick_p> BrickPool, Bricks;
+  std::vector<mod_p> Mods;
 
   engine( void );
   static void displayFunc( void );

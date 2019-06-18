@@ -1,5 +1,7 @@
 #pragma once
 
+#include <fstream>
+
 namespace ark {
 
 class engine;
@@ -11,6 +13,7 @@ public:
   virtual bool isDead( void ) const = 0;
   virtual void render( engine &Engine ) const {
   }
+  virtual const char * settingsFileName( void ) const = 0;
 };
 
 } // End of 'ark' namespace

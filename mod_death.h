@@ -14,6 +14,7 @@ public:
   death( void ) = default;
   virtual void update( engine &Engine ) override;
   virtual bool isDead( void ) const final;
+  virtual const char * settingsFileName( void ) const final;
 };
 
 } // End of 'mods' namespace

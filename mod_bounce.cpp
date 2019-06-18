@@ -48,5 +48,9 @@ void bounce::render( engine &Engine ) const {
   glRectd(-1, -1 + Paddle.getH() * 0.45, 1, -1 + Paddle.getH() * 0.5);
 }
 
+const char * bounce::settingsFileName( void ) const {
+  return "settings/brick_bounce";
+}
+
 } // End of 'mods' namespace
 } // End of 'ark' namespace
