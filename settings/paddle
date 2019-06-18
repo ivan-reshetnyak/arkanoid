@@ -1,8 +1,8 @@
 5.0
-0.03 0.4
+0.4 0.03
 0.2
 1 1 1
 <double> Speed
-<double> Height Width
+<double> Width Height
 <double> ResizeTime
 <double> R G B

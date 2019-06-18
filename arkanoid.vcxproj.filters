@@ -63,6 +63,12 @@
     <ClCompile Include="mod_bounce.cpp">
       <Filter>Source Files\Game\Mods</Filter>
     </ClCompile>
+    <ClCompile Include="mod_heal.cpp">
+      <Filter>Source Files\Game\Mods</Filter>
+    </ClCompile>
+    <ClCompile Include="mod_speed.cpp">
+      <Filter>Source Files\Game\Mods</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="memhooks.h">
@@ -111,6 +117,12 @@
       <Filter>Source Files\Game\Bricks</Filter>
     </ClInclude>
     <ClInclude Include="mod_bounce.h">
+      <Filter>Source Files\Game\Mods</Filter>
+    </ClInclude>
+    <ClInclude Include="mod_heal.h">
+      <Filter>Source Files\Game\Mods</Filter>
+    </ClInclude>
+    <ClInclude Include="mod_speed.h">
       <Filter>Source Files\Game\Mods</Filter>
     </ClInclude>
   </ItemGroup>

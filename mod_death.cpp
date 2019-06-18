@@ -2,6 +2,7 @@
 
 #include <algorithm>
 
+#include "GL/freeglut.h"
 #include "mod_death.h"
 #include "engine.h"
 #include "paddle.h"
@@ -51,6 +52,14 @@ bool death::isDead( void ) const {
 
 const char * death::settingsFileName( void ) const {
   return "settings/game";
+}
+
+void death::render( engine &Engine ) const {
+  glPushMatrix();
+  glLoadIdentity();
+  glRasterPos2d(-1, -1);
+  glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, '0' + Engine.getLives());
+  glPopMatrix();
 }
 
 } // End of 'mods' namespace

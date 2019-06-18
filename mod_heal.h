@@ -8,13 +8,14 @@ class engine;
 
 namespace mods {
 
-class death : public modifier {
+class heal : public modifier {
 public:
-  death( void ) = default;
+  heal( void );
   virtual void update( engine &Engine ) override;
   virtual bool isDead( void ) const final;
   virtual const char * settingsFileName( void ) const final;
-  virtual void render( engine &Engine ) const override;
+private:
+  bool Healed;
 };
 
 } // End of 'mods' namespace

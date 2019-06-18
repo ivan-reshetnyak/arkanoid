@@ -29,6 +29,8 @@
     <ClCompile Include="mod_bounce.cpp" />
     <ClCompile Include="mod_bounds.cpp" />
     <ClCompile Include="mod_death.cpp" />
+    <ClCompile Include="mod_heal.cpp" />
+    <ClCompile Include="mod_speed.cpp" />
     <ClCompile Include="paddle.cpp" />
     <ClCompile Include="timer.cpp" />
   </ItemGroup>
@@ -47,6 +49,8 @@
     <ClInclude Include="mod_bounce.h" />
     <ClInclude Include="mod_bounds.h" />
     <ClInclude Include="mod_death.h" />
+    <ClInclude Include="mod_heal.h" />
+    <ClInclude Include="mod_speed.h" />
     <ClInclude Include="timer.h" />
     <ClInclude Include="paddle.h" />
   </ItemGroup>

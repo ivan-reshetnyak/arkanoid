@@ -1,5 +1,8 @@
 #pragma once
 
+#include <memory>
+
+#include "ball.h"
 #include "modifier.h"
 
 namespace ark {
@@ -8,13 +11,15 @@ class engine;
 
 namespace mods {
 
-class death : public modifier {
+class speed : public modifier {
 public:
-  death( void ) = default;
+  speed( void );
   virtual void update( engine &Engine ) override;
   virtual bool isDead( void ) const final;
   virtual const char * settingsFileName( void ) const final;
-  virtual void render( engine &Engine ) const override;
+private:
+  bool Changed;
+  double Mul;
 };
 
 } // End of 'mods' namespace
