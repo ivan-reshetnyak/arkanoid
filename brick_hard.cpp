@@ -15,7 +15,7 @@ hard::hard( double X, double Y, int Durab ) : brick(X, Y) {
 }
 
 
-void hard::render( void ) const {
+void hard::render( engine &Engine ) const {
   double
     HW = 0.5 * Width,
     HH = 0.5 * Height;

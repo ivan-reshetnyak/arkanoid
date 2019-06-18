@@ -88,11 +88,11 @@ void engine::displayFunc( void ) {
   glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);;
   glClear(GL_COLOR_BUFFER_BIT);
 
-  Instance->Paddle.render();
+  Instance->Paddle.render(*Instance);
   for (auto &Brick : Instance->Bricks)
-    Brick->render();;
+    Brick->render(*Instance);
   for (auto &Ball : Instance->Balls)
-    Ball->render();;
+    Ball->render(*Instance);
 
   glFlush();
   glutSwapBuffers();

@@ -13,7 +13,7 @@ class flicker : public brick {
 public:
   flicker( double X, double Y, double Period = BRICK_FLICKER_PERIOD_MIN );
   virtual void update( engine &Engine );
-  virtual void render( void ) const override;
+  virtual void render( engine &Engine ) const override;
 
 private:
   bool IsActive;

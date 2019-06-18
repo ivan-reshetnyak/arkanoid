@@ -11,7 +11,7 @@ public:
   brick( double X, double Y );
   virtual void update( engine &Engine );
   virtual bool isDead( void ) const;
-  virtual void render( void ) const;
+  virtual void render( engine &Engine ) const;
 
 protected:
   color Color;

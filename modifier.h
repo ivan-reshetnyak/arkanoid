@@ -9,7 +9,7 @@ public:
   modifier( void ) = default;
   virtual void update( engine &Engine ) = 0;
   virtual bool isDead( void ) const = 0;
-  virtual void render( void ) const {
+  virtual void render( engine &Engine ) const {
   }
 };
 

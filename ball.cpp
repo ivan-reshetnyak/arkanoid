@@ -28,7 +28,7 @@ ball::ball( const color &Col, double X, double Y ) : Color(Col), X(X), Y(Y) {
   Height = Width;
 }
 
-void ball::render( void ) const {
+void ball::render( engine &Engine ) const {
   double
     HW = 0.5 * Width,
     HH = 0.5 * Height;

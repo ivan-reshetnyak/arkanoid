@@ -47,7 +47,7 @@ void flicker::update( engine &Engine ) {
   }
 }
 
-void flicker::render( void ) const {
+void flicker::render( engine &Engine ) const {
   //if (!IsActive)
   //  return;
 

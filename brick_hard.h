@@ -11,7 +11,7 @@ namespace bricks {
 class hard : public brick {
 public:
   hard( double X, double Y, int Durability );
-  virtual void render( void ) const override;
+  virtual void render( engine &Engine ) const override;
 
 private:
   int MaxDurability;

@@ -44,7 +44,7 @@ bool brick::isDead( void ) const {
   return Durability <= 0;
 }
 
-void brick::render( void ) const {
+void brick::render( engine &Engine ) const {
   double
     HW = 0.5 * Width,
     HH = 0.5 * Height;

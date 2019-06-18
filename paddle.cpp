@@ -50,7 +50,7 @@ paddle::paddle( const color &Col ) : Color(Col) {
   ResizeSpeed = 0;
 }
 
-void paddle::render( void ) const {
+void paddle::render( engine &Engine ) const {
   double
     HW = 0.5 * Width,
     HH = 0.5 * Height;

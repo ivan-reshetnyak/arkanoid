@@ -13,7 +13,7 @@ public:
   void resize( double Mul );
   void modSpeed( double Mul );
   void update( engine &Engine );
-  void render( void ) const;
+  void render( engine &Engine ) const;
   double getX( void ) const;
   double getY( void ) const;
   void setX( double X );
